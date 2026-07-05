@@ -9,8 +9,10 @@ Every serious project should tell the agent:
 - What the project does.
 - Which branch and repository are the source of truth.
 - Which files contain architecture and deployment notes.
+- Which file maps source paths to deployed resources.
 - How to run tests, builds, and local servers.
 - How deployment works.
+- Which deploy target or resource module a change affects.
 - What must never be committed.
 - How to update changelogs.
 - How to treat AWS resources and credentials.
@@ -25,6 +27,7 @@ The agent should:
 - Avoid overwriting user changes.
 - Prefer existing project patterns over inventing new ones.
 - Run relevant checks before finishing.
+- Select the smallest safe check and deploy scope when the project defines routing rules.
 - Commit focused changes when asked.
 - Update AI-visible changelogs for meaningful changes.
 - Document manual cloud changes until they are moved into infrastructure-as-code.
@@ -39,6 +42,8 @@ The repo should carry that context:
 - `AGENT_WORKFLOW.md` for the operating checklist.
 - `AI_CHANGELOG.md` for agent-created history.
 - `docs/` for architecture and deployment context.
+- `docs/architecture-resource-map.md` or equivalent for source path to resource ownership.
 - `scripts/` for repeatable actions.
+- `scripts/select-*` style routing helpers when CI or deployment can be scoped safely.
 
 Good AI workflow design is mostly about reducing ambiguity.
